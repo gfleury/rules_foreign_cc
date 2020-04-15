@@ -73,7 +73,8 @@ done
 
 def symlink_contents_to_dir(source, target):
     text = """
-local target="$2"
+local basedir=$(dirname $1)
+local target="$2/$basedir"
 mkdir -p $target
 if [[ -f $1 ]]; then
   ##symlink_to_dir## $1 $target
