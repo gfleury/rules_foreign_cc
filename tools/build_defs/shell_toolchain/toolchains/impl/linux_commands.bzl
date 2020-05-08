@@ -64,7 +64,9 @@ def copy_dir_contents_to_dir(source, target):
     return """cp -L -r --no-target-directory "{}" "{}" """.format(source, target)
 
 def symlink_contents_to_dir(source, target):
-    text = """local target="$2"
+    text = """
+local basedir=$(dirname $1)
+local target="$2/$basedir"
 mkdir -p $target
 if [[ -f $1 ]]; then
   ##symlink_to_dir## $1 $target
